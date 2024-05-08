@@ -1,18 +1,48 @@
+import { nanoid } from "nanoid";
+import { useId, useState } from "react";
+
 const App = () => {
+    const [tasks, settasks] = useState(
+        JSON.parse(localStorage.getItem("tasks")) || []
+    );
+
+    const [title, settitle] = useState("");
+
+    const SubmitHandler = (e) => {
+        e.preventDefault();
+        const newtodo = { id: nanoid(), title, completed: false };
+        console.log(newtodo);
+
+        // const copytasks = [...tasks]
+        // copytasks.push(newtodo);
+        // settasks(copytasks)
+
+        settasks([...tasks, newtodo]);
+        settitle("");
+        localStorage.setItem("tasks", JSON.stringify([...tasks, newtodo]));
+    };
+    console.log(tasks);
+
     return (
         <div className="overflow-x-hidden border-t-2 w-screen min-h-[100vh] bg-zinc-800 flex  items-center flex-col">
+            {/*  */}
             <div className="mt-[7%] w-[35%] h-[30vh] border rounded-3xl flex justify-around items-center">
                 <div className="text-yellow-100">
                     <h1 className="text-3xl font-bold">LETS TODO</h1>
                     <p>Keeps doing things</p>
                 </div>
                 <div className="text-3xl font-extrabold flex justify-center items-center w-[10vmax] h-[10vmax] rounded-full bg-orange-600">
-                    0/0
+                    0/{tasks.length}
                 </div>
             </div>
             {/*  */}
-            <form className="w-[35%] flex justify-between px-5 my-[2%]">
+            <form
+                onSubmit={SubmitHandler}
+                className="w-[35%] flex justify-between px-5 my-[2%]"
+            >
                 <input
+                    onChange={(e) => settitle(e.target.value)}
+                    value={title}
                     placeholder="write your next task..."
                     className="px-5 py-2 text-yellow-100 outline-none w-[80%] rounded-xl bg-zinc-700 "
                     type="text"
