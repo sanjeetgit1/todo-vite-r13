@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { useId, useState } from "react";
+import { useState } from "react";
 
 const App = () => {
     const [tasks, settasks] = useState(
@@ -23,6 +23,14 @@ const App = () => {
     };
     console.log(tasks);
 
+    const CompleteHandler = (index) => {
+        console.log(index);
+        const copyTasks = [...tasks];
+        copyTasks[index].completed = !copyTasks[index].completed;
+        settasks(copyTasks);
+        localStorage.setItem("tasks", JSON.stringify(copyTasks));
+    };
+
     return (
         <div className="overflow-x-hidden border-t-2 w-screen min-h-[100vh] bg-zinc-800 flex  items-center flex-col">
             {/*  */}
@@ -32,7 +40,8 @@ const App = () => {
                     <p>Keeps doing things</p>
                 </div>
                 <div className="text-3xl font-extrabold flex justify-center items-center w-[10vmax] h-[10vmax] rounded-full bg-orange-600">
-                    0/{tasks.length}
+                    {tasks.filter((t) => t.completed === true).length}/
+                    {tasks.length}
                 </div>
             </div>
             {/*  */}
@@ -54,23 +63,44 @@ const App = () => {
             {/*  */}
 
             <ul className="list-none w-[35%] ">
-                <li className="mb-5 flex justify-between items-center border rounded-xl p-5">
-                    <div className="flex items-center">
-                        <div
-                            className={`border mr-4 rounded-full w-[30px] h-[30px]  border-orange-600`}
-                        ></div>
-                        <h1
-                            className={` text-2xl font-extrabold text-yellow-100`}
-                        >
-                            Task 01
-                        </h1>
-                    </div>
-                    <div className="flex gap-3 text-2xl text-yellow-100">
-                        <i className="ri-file-edit-line"></i>
-                        <i className="ri-delete-bin-3-line"></i>
-                    </div>
-                </li>
-                <li className="mb-5 flex justify-between items-center border rounded-xl p-5">
+                {tasks.length > 0 ? (
+                    tasks.map((task, index) => {
+                        return (
+                            <li
+                                key={task.id}
+                                className="mb-5 flex justify-between items-center border rounded-xl p-5"
+                            >
+                                <div className="flex items-center">
+                                    <div
+                                        onClick={() => CompleteHandler(index)}
+                                        className={`${
+                                            task.completed
+                                                ? "bg-green-600"
+                                                : "border"
+                                        } mr-4 rounded-full w-[30px] h-[30px]  border-orange-600`}
+                                    ></div>
+                                    <h1
+                                        className={`${
+                                            task.completed ? "line-through" : ""
+                                        } text-2xl font-extrabold text-yellow-100`}
+                                    >
+                                        {task.title}
+                                    </h1>
+                                </div>
+                                <div className="flex gap-3 text-2xl text-yellow-100">
+                                    <i className="ri-file-edit-line"></i>
+                                    <i className="ri-delete-bin-3-line"></i>
+                                </div>
+                            </li>
+                        );
+                    })
+                ) : (
+                    <h1 className="mt-10 w-full text-center text-orange-600 text-3xl">
+                        No Pending Tasks
+                    </h1>
+                )}
+
+                {/* <li className="mb-5 flex justify-between items-center border rounded-xl p-5">
                     <div className="flex items-center">
                         <div
                             className={`bg-green-600 mr-4 rounded-full w-[30px] h-[30px]  border-orange-600`}
@@ -85,7 +115,7 @@ const App = () => {
                         <i className="ri-file-edit-line"></i>
                         <i className="ri-delete-bin-3-line"></i>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </div>
     );
