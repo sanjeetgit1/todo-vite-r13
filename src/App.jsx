@@ -24,7 +24,7 @@ const App = () => {
     console.log(tasks);
 
     return (
-        <div className="overflow-x-hidden border-t-2 w-screen min-h-[100vh] bg-zinc-800 flex  items-center flex-col">
+        <div className="overflow-x-hidden  border-t-2 w-screen min-h-[100vh] bg-zinc-800 flex  items-center flex-col">
             {/*  */}
             <div className="mt-[7%] w-[35%] h-[30vh] border rounded-3xl flex justify-around items-center">
                 <div className="text-yellow-100">
