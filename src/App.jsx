@@ -1,3 +1,4 @@
+import { json } from "express";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ const App = () => {
         localStorage.setItem("tasks", JSON.stringify(copyTasks));
     };
 
+   
     return (
         <div className="overflow-x-hidden  border-t-2 w-screen min-h-[100vh] bg-zinc-800 flex  items-center flex-col">
             {/*  */}
@@ -82,6 +84,8 @@ const App = () => {
                                     <h1
                                         className={`${
                                             task.completed ? "line-through" : ""
+
+
                                         } text-2xl font-extrabold text-yellow-100`}
                                     >
                                         {task.title}
@@ -89,7 +93,7 @@ const App = () => {
                                 </div>
                                 <div className="flex gap-3 text-2xl text-yellow-100">
                                     <i className="ri-file-edit-line"></i>
-                                    <i className="ri-delete-bin-3-line"></i>
+                                    <i className="ri-delete-bin-3-line" ></i>
                                 </div>
                             </li>
                         );
