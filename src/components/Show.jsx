@@ -1,8 +1,10 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
 const Show =(props)=> {
+
     const tasks=props.tasks;
     const settasks=props.settasks;
+    
     const [title,settitle]=useState("");
 const CompleteHandler = (index) => {
     console.log(index);

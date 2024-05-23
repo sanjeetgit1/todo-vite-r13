@@ -1,9 +1,8 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
-const Create =(props)=> {
-    const tasks =props.tasks;
-    const settasks=props.settasks;
+const Create =()=> {
+  
     
     const [title, settitle] = useState("");
     
