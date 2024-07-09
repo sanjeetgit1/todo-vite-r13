@@ -35,7 +35,7 @@ const Show = () => {
                                         task.completed
                                             ? "bg-green-600"
                                             : "border"
-                                    } mr-4 rounded-full w-[30px] h-[30px]  border-orange-600`}
+                                    } mr-4 rounded-full w-[30px] h-[30px]  border-green-600`}
                                 ></div>
                                 <h1
                                     className={`${
