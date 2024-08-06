@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import React, { useContext, useState } from "react";
 import { taskscontext } from "../Context/TasksContext";
 
+import './Create.css'
 const Create = () => {
     const [tasks, settasks] = useContext(taskscontext);
     const [title, settitle] = useState("");
@@ -16,11 +17,13 @@ const Create = () => {
     };
 
     return (
-        <form
+        <form  
+        id="input"
             onSubmit={SubmitHandler}
             className="w-[35%] flex justify-between px-5 my-[2%]"
         >
             <input
+          
                 onChange={(e) => settitle(e.target.value)}
                 value={title}
                 placeholder="write your next task..."
@@ -28,7 +31,7 @@ const Create = () => {
                 type="text"
             />
             <button className="outline-none text-4xl font-extrabold flex justify-center items-center w-[5vmax] h-[5vmax] rounded-full bg-green-900">
-                <i className="ri-add-fill"></i>
+                <i id="ri-add" className="ri-add-fill"></i>
             </button>
         </form>
     );

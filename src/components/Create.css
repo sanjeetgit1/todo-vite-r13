@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+@media (max-width:700px){
+    #input{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+    width: 60vw;
+    padding: 4vw;
+    gap: 3vw;
+}
+#input i{
+    background-color: rgb(51, 212, 137);
+
+   
+border-radius: 50px;
+}
+}
