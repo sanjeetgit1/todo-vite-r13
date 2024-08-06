@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { taskscontext } from "../Context/TasksContext";
+import './Show.css'
 
 const Show = () => {
     const [tasks, settasks] = useContext(taskscontext);
@@ -56,7 +57,7 @@ const Show = () => {
                     );
                 })
             ) : (
-                <h1 className="mt-10 w-full text-center text-orange-600 text-3xl">
+                <h1 id="h1" className="mt-10 w-full text-center text-orange-600 text-3xl">
                     No Pending Tasks
                 </h1>
             )}

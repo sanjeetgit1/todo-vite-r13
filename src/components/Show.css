@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width:600px){
+    #h1{
+      min-width: 100%; 
+      font-size: 5vw; 
+    
+    }
+}
